@@ -1,0 +1,20 @@
+5: ?Performance
+8: ?Flexibility
+9: Scalability
+12: Cost
+15: Complexity
+16: Mesh-
+17: Star
+19: Star
+20: Bus,
+23: CommonExamples
+26: Computer
+27: Types
+28: of
+34: MAN
+36: PAN
+38: {0:W}
+39: Area
+41: Area
+45: Network
+47: Small area

@@ -1,0 +1,10 @@
+# Font pipeline (pipeline/). Also needs the potrace CLI:
+#   brew install potrace   |   apt install potrace
+numpy>=2.0
+opencv-python>=4.10
+scikit-image>=0.24
+Pillow>=10.0
+PyMuPDF>=1.24
+fonttools[woff]>=4.50
+uharfbuzz>=0.40
+freetype-py>=2.4

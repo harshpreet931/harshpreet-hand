@@ -1,0 +1,40 @@
+{
+  "api_calls": 158,
+  "tool_calls": 184,
+  "tools": {
+    "Bash": 107,
+    "Read": 72,
+    "Artifact": 2,
+    "Write": 3
+  },
+  "images_viewed": 72,
+  "tokens": {
+    "input": 316,
+    "cache_read": 33660775,
+    "cache_write_1h": 373405,
+    "cache_write_5m": 0,
+    "output": 198011,
+    "thinking": 86597
+  },
+  "total_tokens": 34232507,
+  "cost": {
+    "input": 0.001264,
+    "output": 3.96022,
+    "cache_read": 6.732155,
+    "cache_write_1h": 2.98724,
+    "cache_write_5m": 0.0
+  },
+  "cost_total": 13.680879,
+  "cost_without_caching": 140.09820399999998,
+  "last": "2026-09-23T08:19:43.684Z",
+  "duration_seconds": 3985,
+  "started": "2026-09-23T07:13:18.377Z",
+  "model": "claude-opus-5-5",
+  "prices_per_mtok": {
+    "input": 4.0,
+    "output": 20.0,
+    "cache_read": 0.2,
+    "cache_write_1h": 8.0,
+    "cache_write_5m": 5.0
+  }
+}

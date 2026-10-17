@@ -1,0 +1,100 @@
+/*
+ * Harshpreet Hand — a font made from Harshpreet Singh's handwritten notes.
+ *
+ * Drop this file next to the .woff2/.woff files (or fix the url() paths) and
+ * import it once. Then switch the theme on with data-theme="handwritten" on
+ * <html> (or any container).
+ */
+
+@font-face {
+  font-family: "Harshpreet Hand";
+  src: url("./HarshpreetHand-Regular.woff2") format("woff2"),
+       url("./HarshpreetHand-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Harshpreet Hand";
+  src: url("./HarshpreetHand-Bold.woff2") format("woff2"),
+       url("./HarshpreetHand-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Theme: "handwritten" (notebook paper + ballpoint ink) ------------- */
+
+[data-theme="handwritten"] {
+  --hand-font: "Harshpreet Hand", "Segoe Print", "Bradley Hand", cursive;
+  --hand-ink: #1f2f8c;        /* ballpoint blue */
+  --hand-ink-soft: #4d5a93;
+  --hand-paper: #f7f8fc;
+  --hand-rule: #d5dcee;       /* ruled lines */
+  --hand-margin: #d0605e;     /* red margin rule */
+  --hand-line: 1.6;           /* the long g/y loops need room */
+
+  font-family: var(--hand-font);
+  /* The x-height is 0.44 em (smaller than most UI fonts), so size up ~15%. */
+  font-size: 1.15em;
+  line-height: var(--hand-line);
+  color: var(--hand-ink);
+  background: var(--hand-paper);
+  /* calt rotates 3 variants of every letter; keep it on. */
+  font-feature-settings: "calt" 1, "kern" 1;
+  font-variant-ligatures: contextual;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="handwritten"] {
+    --hand-ink: #b9c6ff;
+    --hand-ink-soft: #8f9cc9;
+    --hand-paper: #10152a;
+    --hand-rule: #232d4d;
+    --hand-margin: #c46a67;
+  }
+}
+
+[data-theme="handwritten"] h1,
+[data-theme="handwritten"] h2,
+[data-theme="handwritten"] h3,
+[data-theme="handwritten"] strong,
+[data-theme="handwritten"] b {
+  font-family: var(--hand-font);
+  font-weight: 700;
+}
+
+/* Optional: ruled notebook paper behind a block of text.
+   The rule sits just under each baseline (baseline = 1em below line top). */
+[data-theme="handwritten"] .notebook {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(1.04em - 1px),
+    var(--hand-rule) calc(1.04em - 1px),
+    var(--hand-rule) 1.04em,
+    transparent 1.04em,
+    transparent calc(var(--hand-line) * 1em)
+  );
+  border-left: 2px solid var(--hand-margin);
+  padding-left: 1em;
+}
+
+/* Optional: the wide word gaps of the original notes. */
+[data-theme="handwritten"] .notebook-spacing {
+  word-spacing: 0.18em;
+  letter-spacing: 0.01em;
+}
+
+/* Optional: plain r instead of the looped r (stylistic set 1). */
+[data-theme="handwritten"] .plain-r {
+  font-feature-settings: "calt" 1, "kern" 1, "ss01" 1;
+}
+
+/* Code, tables and dense UI usually read better in your normal font. */
+[data-theme="handwritten"] code,
+[data-theme="handwritten"] pre,
+[data-theme="handwritten"] kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

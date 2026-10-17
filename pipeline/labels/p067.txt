@@ -1,0 +1,15 @@
+20: Protocols.
+23: Routing
+24: is
+25: the
+26: process
+27: of
+28: selecting
+29: best
+33: various
+36: options
+46: Static
+48: IGP
+49: EGP
+50: Exterior
+30: {0:→}

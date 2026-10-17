@@ -1,0 +1,48 @@
+# Publishes dist/specimen.html as the live type tester on GitHub Pages.
+name: Deploy specimen
+
+on:
+  push:
+    branches: [main]
+    paths: [dist/**, assets/social-preview.png, .github/workflows/pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Assemble site
+        env:
+          BASE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          mkdir _site
+          cp dist/* _site/
+          cp assets/social-preview.png _site/
+          desc="A real font made from 120 pages of handwritten college notes. Type in it."
+          meta="<meta name=\"description\" content=\"$desc\">"
+          meta="$meta<meta property=\"og:title\" content=\"Harshpreet Hand\">"
+          meta="$meta<meta property=\"og:description\" content=\"$desc\">"
+          meta="$meta<meta property=\"og:image\" content=\"$BASE/social-preview.png\">"
+          meta="$meta<meta name=\"twitter:card\" content=\"summary_large_image\">"
+          sed "s|<title>Harshpreet Hand</title>|&$meta|" dist/specimen.html > _site/index.html
+          grep -c 'og:image' _site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

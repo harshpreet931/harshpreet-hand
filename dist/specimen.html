@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harshpreet Hand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+@font-face { font-family: "Harshpreet Hand"; src: url("HarshpreetHand-Regular.woff2") format("woff2"), url("HarshpreetHand-Regular.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Harshpreet Hand"; src: url("HarshpreetHand-Bold.woff2") format("woff2"), url("HarshpreetHand-Bold.woff") format("woff"); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --paper: #f6f7fc;
+  --sheet: #fbfcff;
+  --rule: #d8def0;
+  --margin: #cf5d5b;
+  --ink: #1f2f8c;
+  --ink-2: #47548c;
+  --text: #1c2233;
+  --text-2: #56607a;
+  --line: #e2e6f2;
+  --chip: #eceffa;
+  --focus: #cf5d5b;
+  --hand: "Harshpreet Hand", "Segoe Print", "Bradley Hand", cursive;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0e1326;
+    --sheet: #121931;
+    --rule: #242f52;
+    --margin: #c9716e;
+    --ink: #b7c5ff;
+    --ink-2: #93a1d6;
+    --text: #e3e7f5;
+    --text-2: #a0a9c6;
+    --line: #232c4a;
+    --chip: #1b2442;
+    --focus: #e08a86;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0e1326;
+  --sheet: #121931;
+  --rule: #242f52;
+  --margin: #c9716e;
+  --ink: #b7c5ff;
+  --ink-2: #93a1d6;
+  --text: #e3e7f5;
+  --text-2: #a0a9c6;
+  --line: #232c4a;
+  --chip: #1b2442;
+  --focus: #e08a86;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--text);
+  font: 400 16px/1.6 var(--sans);
+  padding-inline: 20px;
+  padding-block: 0 64px;
+}
+.page { max-width: 1040px; margin: 0 auto; }
+a { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+
+.hand { font-family: var(--hand); font-feature-settings: "calt" 1, "kern" 1; }
+.eyebrow {
+  font: 500 12px/1.4 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin: 0 0 12px;
+}
+h2 {
+  font: 600 22px/1.3 var(--sans);
+  margin: 0 0 6px;
+  text-wrap: balance;
+}
+.lede { color: var(--text-2); max-width: 62ch; margin: 0 0 22px; }
+section { padding-block: 44px; border-top: 1px solid var(--line); }
+
+/* ---------- masthead ---------- */
+.mast { padding-block: 44px 36px; display: grid; gap: 18px; }
+.mast h1 {
+  margin: 0;
+  font-family: var(--hand);
+  font-weight: 700;
+  font-size: clamp(56px, 11vw, 132px);
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.mast p { margin: 0; max-width: 60ch; font-size: 17px; color: var(--text-2); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.facts li {
+  font: 400 13px/1 var(--mono);
+  background: var(--chip);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- tester ---------- */
+.controls { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin-bottom: 14px; }
+.ctl { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-2); }
+.ctl input[type="range"] { width: 150px; accent-color: var(--ink); }
+.ctl output { font: 400 13px var(--mono); color: var(--text); min-width: 42px; font-variant-numeric: tabular-nums; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button {
+  font: 500 13px var(--sans); color: var(--text-2); background: transparent;
+  border: 0; padding: 7px 12px; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--sheet); }
+.check { display: flex; align-items: center; gap: 7px; font-size: 14px; color: var(--text-2); cursor: pointer; }
+.check input { accent-color: var(--ink); width: 16px; height: 16px; }
+.inks { display: flex; gap: 6px; }
+.inks button {
+  width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--sheet);
+  box-shadow: 0 0 0 1px var(--line); cursor: pointer; padding: 0;
+}
+.inks button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--text); }
+
+.sheet {
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px 18px 0;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+}
+.sheet::before { content: ""; border-right: 1.5px solid var(--margin); margin-right: 18px; }
+#tester {
+  font-family: var(--hand);
+  font-size: 56px;
+  line-height: 1.6;
+  color: var(--tester-ink, var(--ink));
+  outline: none;
+  min-height: 1.6em;
+  overflow-wrap: anywhere;
+  font-feature-settings: "calt" 1, "kern" 1;
+}
+#tester.ruled {
+  background-image: repeating-linear-gradient(
+    to bottom, transparent 0, transparent calc(1.04em - 1px), var(--rule) calc(1.04em - 1px),
+    var(--rule) 1.04em, transparent 1.04em, transparent 1.6em);
+}
+.hint { font-size: 13px; color: var(--text-2); margin: 10px 0 0; }
+
+/* ---------- notebook comparison ---------- */
+.compare { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 900px; }
+.compare figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+.compare img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); display: block; }
+.compare .set {
+  background: var(--sheet); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 14px; font-family: var(--hand); color: var(--ink);
+  font-size: clamp(17px, 2.6vw, 27px); line-height: 1.6;
+  font-feature-settings: "calt" 1, "kern" 1;
+}
+figcaption { font: 400 12px/1.4 var(--mono); color: var(--text-2); }
+
+/* ---------- traits ---------- */
+.traits { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 26px 28px; margin: 0; padding: 0; list-style: none; }
+.traits li { display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: start; }
+.traits .g {
+  font-family: var(--hand); font-size: 64px; line-height: 1; color: var(--ink);
+  text-align: center; padding-top: 6px; font-feature-settings: "calt" 0;
+}
+.traits .g.ss01 { font-feature-settings: "calt" 0, "ss01" 1; }
+.traits h3 { font: 600 15px/1.35 var(--sans); margin: 4px 0 4px; }
+.traits p { margin: 0; font-size: 14px; color: var(--text-2); }
+code { font: 400 0.86em var(--mono); background: var(--chip); padding: 1px 5px; border-radius: 4px; color: var(--text); }
+
+/* ---------- variants ---------- */
+.variants { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 6px; }
+.variants div {
+  font-family: var(--hand); font-size: 42px; line-height: 1.5; color: var(--ink);
+  text-align: center; background: var(--sheet); border-radius: 6px;
+  font-feature-settings: "calt" 1, "kern" 0; letter-spacing: 0.06em;
+}
+
+/* ---------- charset ---------- */
+.charset { display: grid; grid-template-columns: repeat(auto-fill, minmax(54px, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.charset span {
+  font-family: var(--hand); font-size: 32px; line-height: 1;
+  color: var(--ink); display: grid; place-items: center;
+  aspect-ratio: 1 / 1.15; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  font-feature-settings: "calt" 0;
+}
+.charset span:hover { background: var(--chip); }
+.charset-label { font: 500 12px var(--mono); color: var(--text-2); margin: 22px 0 8px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ---------- process ---------- */
+.steps { margin: 0; padding-left: 1.3em; display: grid; gap: 10px; max-width: 70ch; }
+.steps li { padding-left: 4px; color: var(--text-2); }
+.steps b { color: var(--text); font-weight: 600; }
+
+/* ---------- use it ---------- */
+.code-wrap { position: relative; }
+pre {
+  margin: 0; background: var(--sheet); border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px 20px; overflow-x: auto; font: 400 13px/1.65 var(--mono); color: var(--text);
+}
+.copy {
+  position: absolute; top: 10px; right: 10px;
+  font: 500 12px var(--sans); background: var(--ink); color: var(--sheet);
+  border: 0; border-radius: 6px; padding: 7px 11px; cursor: pointer;
+}
+.files { font: 400 13px/1.9 var(--mono); color: var(--text-2); margin: 16px 0 0; }
+
+@media (max-width: 720px) {
+  #tester { font-size: 40px; }
+  .sheet { grid-template-columns: 26px 1fr; }
+  .sheet::before { margin-right: 12px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .seg button, .inks button { transition: background-color .15s, box-shadow .15s; }
+}
+</style>
+
+</head>
+<body>
+<div class="page">
+  <header class="mast">
+    <p class="eyebrow">A handwriting font · v1.0</p>
+    <h1>Harshpreet Hand</h1>
+    <p>Made from 120 pages of my Computer Networks notes. Every letter comes from my own pen strokes: found in the photos, cleaned up, and redrawn with one steady ballpoint nib.</p>
+    <ul class="facts">
+      <li>2 weights</li>
+      <li>164 characters</li>
+      <li>394 glyphs</li>
+      <li>3 variants per letter</li>
+      <li>x-height 442 / 1000</li>
+      <li>2,479 letter samples</li>
+    </ul>
+  </header>
+
+  <section id="try" aria-labelledby="try-h">
+    <p class="eyebrow">Type tester</p>
+    <h2 id="try-h">Write something</h2>
+    <p class="lede">Click the sheet and type. Letters change between variants as you go, like real handwriting.</p>
+    <div class="controls">
+      <label class="ctl" for="size">Size <input id="size" type="range" min="20" max="120" value="56"><output id="size-out" for="size">56px</output></label>
+      <div class="seg" role="group" aria-label="Weight">
+        <button type="button" id="w-400" aria-pressed="true">Regular</button>
+        <button type="button" id="w-700" aria-pressed="false">Bold</button>
+      </div>
+      <label class="check" for="calt"><input id="calt" type="checkbox" checked> Letter variants</label>
+      <label class="check" for="ss01"><input id="ss01" type="checkbox"> Plain r</label>
+      <label class="check" for="ruled"><input id="ruled" type="checkbox" checked> Ruled paper</label>
+      <div class="inks" role="group" aria-label="Ink colour">
+        <button type="button" id="ink-blue" data-ink="" aria-pressed="true" title="Ballpoint blue" style="background:#1f2f8c"></button>
+        <button type="button" id="ink-black" data-ink="#1b1b1f" aria-pressed="false" title="Black gel" style="background:#1b1b1f"></button>
+        <button type="button" id="ink-red" data-ink="#c0392b" aria-pressed="false" title="Red pen" style="background:#c0392b"></button>
+      </div>
+    </div>
+    <div class="sheet">
+      <div id="tester" class="ruled" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="Type to preview the font">Hello, I'm Harshpreet. I build things for the web → one packet at a time.</div>
+    </div>
+    <p class="hint">Your text stays in this browser only.</p>
+  </section>
+
+  <section aria-labelledby="nb-h">
+    <p class="eyebrow">From the notebook</p>
+    <h2 id="nb-h">The same sentence, twice</h2>
+    <p class="lede">Top: a photo of page 5 of the notes. Below: the same words typed in the font.</p>
+    <div class="compare">
+      <figure>
+        <img src="notes-sample.jpg" alt="Photo of handwritten notes in blue ballpoint: A conceptual model that describes how data is communicated over a network. It is a 7 layer model. First introduced in 1970s. Made by ISO." width="1365" height="205">
+        <figcaption>Photo · CN notes, page 5</figcaption>
+      </figure>
+      <figure>
+        <div class="set">A conceptual model that describes how data is communicated over a network. It is a 7 layer model. First introduced in 1970s. Made by ISO.</div>
+        <figcaption>Typed · Harshpreet Hand Regular</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="traits-h">
+    <p class="eyebrow">Quirks worth keeping</p>
+    <h2 id="traits-h">What makes it my handwriting</h2>
+    <p class="lede">These habits turned up again and again across the pages, so the font keeps them.</p>
+    <ul class="traits">
+      <li><span class="g">i</span><div><h3>Ring dots</h3><p>i and j get a small open circle, never a dot.</p></div></li>
+      <li><span class="g">l</span><div><h3>Looped l</h3><p>The l is always a loop, never a straight stick.</p></div></li>
+      <li><span class="g">d</span><div><h3>Curled d</h3><p>The d's stem curls back at the top, almost like ∂.</p></div></li>
+      <li><span class="g">r</span><div><h3>The looped r</h3><p>A small curl at the foot. For a plainer <span class="hand" style="font-feature-settings: 'ss01' 1">r</span>, turn on <code>ss01</code>.</p></div></li>
+      <li><span class="g">t</span><div><h3>Half-crossed t</h3><p>The crossbar only goes to the right of the stem.</p></div></li>
+      <li><span class="g">&amp;</span><div><h3>Crossed-leg &amp;</h3><p>A loop on top with the legs crossing below.</p></div></li>
+      <li><span class="g">2</span><div><h3>Curled 2</h3><p>The bottom of the 2 starts with a small curl.</p></div></li>
+      <li><span class="g">→</span><div><h3>Margin arrow</h3><p>The hook-headed arrow from my margins. Type <code>→</code> (U+2192).</p></div></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="var-h">
+    <p class="eyebrow">Contextual alternates · calt</p>
+    <h2 id="var-h">Three of every letter</h2>
+    <p class="lede">Each letter was picked three times from different pages. The font rotates through them, so double letters like “ll” and “ee” never look stamped.</p>
+    <div class="variants" id="variants"></div>
+  </section>
+
+  <section aria-labelledby="cs-h">
+    <p class="eyebrow">Character set</p>
+    <h2 id="cs-h">Every character</h2>
+    <div id="charset"></div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <p class="eyebrow">How it was made</p>
+    <h2 id="how-h">From notebook photos to a font</h2>
+    <ol class="steps">
+      <li><b>Separate the ink.</b> On each page photo the blue pen was isolated from the paper, the ruled lines, the red margin and the text showing through from the back.</li>
+      <li><b>Find the letters.</b> Each page was split into words and letters, and 704 words were transcribed by hand. That gave 2,479 labelled letters.</li>
+      <li><b>Pick the typical ones.</b> For each letter, the samples were scored by how close they are to that letter's usual shape and how sharp the photo was. The best three became the variants.</li>
+      <li><b>Redraw with one pen.</b> Each letter was reduced to the path of the pen, smoothed, and redrawn with a round nib. Regular uses a 57-unit nib and Bold an 88-unit nib.</li>
+      <li><b>Fill the gaps.</b> Letters that are rare in the notes (G, J, X, some punctuation and accents) were built from parts of the hand: the C, the ring dot, the comma, the x.</li>
+      <li><b>Build the font.</b> The letters were traced to curves, spaced and kerned from their outlines, and given OpenType features that rotate the variants.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="use-h">
+    <p class="eyebrow">Use it</p>
+    <h2 id="use-h">Add it as a theme</h2>
+    <p class="lede">Put the font files next to <code class="mono">harshpreet-hand.css</code>, import that CSS, then set <code class="mono">data-theme="handwritten"</code> on the page.</p>
+    <div class="code-wrap">
+      <button type="button" class="copy" id="copy-css">Copy CSS</button>
+<pre id="css-snippet">@font-face {
+  font-family: "Harshpreet Hand";
+  src: url("/fonts/HarshpreetHand-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Harshpreet Hand";
+  src: url("/fonts/HarshpreetHand-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+[data-theme="handwritten"] {
+  font-family: "Harshpreet Hand", "Segoe Print", cursive;
+  font-size: 1.15em;      /* x-height is 0.44em, so size up a little */
+  line-height: 1.6;       /* room for the long g / y loops */
+  color: #1f2f8c;         /* ballpoint blue */
+  background: #f7f8fc;
+  font-feature-settings: "calt" 1, "kern" 1;
+}</pre>
+    </div>
+    <p class="files">dist/ · HarshpreetHand-Regular.woff2 · HarshpreetHand-Bold.woff2 · .woff · .ttf · harshpreet-hand.css</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  var tester = document.getElementById('tester');
+  var size = document.getElementById('size');
+  var sizeOut = document.getElementById('size-out');
+  var calt = document.getElementById('calt');
+  var ss01 = document.getElementById('ss01');
+  var ruled = document.getElementById('ruled');
+  var KEY = 'hh-tester-text';
+
+  try {
+    var saved = localStorage.getItem(KEY);
+    if (saved) tester.textContent = saved;
+  } catch (e) {}
+  tester.addEventListener('input', function () {
+    try { localStorage.setItem(KEY, tester.textContent); } catch (e) {}
+  });
+  tester.addEventListener('paste', function (e) {
+    e.preventDefault();
+    var t = (e.clipboardData || window.clipboardData).getData('text');
+    document.execCommand('insertText', false, t);
+  });
+
+  function features() {
+    tester.style.fontFeatureSettings =
+      '"calt" ' + (calt.checked ? 1 : 0) + ', "kern" 1, "ss01" ' + (ss01.checked ? 1 : 0);
+  }
+  size.addEventListener('input', function () {
+    tester.style.fontSize = size.value + 'px';
+    sizeOut.textContent = size.value + 'px';
+  });
+  calt.addEventListener('change', features);
+  ss01.addEventListener('change', features);
+  ruled.addEventListener('change', function () { tester.classList.toggle('ruled', ruled.checked); });
+
+  ['w-400', 'w-700'].forEach(function (id) {
+    document.getElementById(id).addEventListener('click', function () {
+      tester.style.fontWeight = id === 'w-700' ? 700 : 400;
+      document.getElementById('w-400').setAttribute('aria-pressed', id === 'w-400');
+      document.getElementById('w-700').setAttribute('aria-pressed', id === 'w-700');
+    });
+  });
+  document.querySelectorAll('.inks button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.inks button').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+      if (b.dataset.ink) tester.style.setProperty('--tester-ink', b.dataset.ink);
+      else tester.style.removeProperty('--tester-ink');
+    });
+  });
+
+  // three of every letter
+  var v = document.getElementById('variants');
+  'abcdefghiklmnoprstuvwxyzABCDEFGILMNPQRSTXY1234678'.split('').forEach(function (c) {
+    var d = document.createElement('div');
+    d.textContent = c + c + c;
+    v.appendChild(d);
+  });
+
+  // character set
+  var groups = [
+    ['Uppercase', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
+    ['Lowercase', 'abcdefghijklmnopqrstuvwxyz'],
+    ['Figures', '0123456789'],
+    ['Punctuation & symbols', '.,:;!?\'"‘’“”-–—…·•()[]{}/\\|_&@#$%*+=×÷<>^~`°'],
+    ['Arrows', '→←↑↓'],
+    ['Accents', 'àáâãäåèéêëìíîïòóôõöùúûüñçýÿÀÁÂÃÄÅÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÑÇÝ']
+  ];
+  var cs = document.getElementById('charset');
+  groups.forEach(function (g) {
+    var h = document.createElement('p');
+    h.className = 'charset-label';
+    h.textContent = g[0];
+    cs.appendChild(h);
+    var grid = document.createElement('div');
+    grid.className = 'charset';
+    Array.from(g[1]).forEach(function (ch) {
+      var s = document.createElement('span');
+      s.textContent = ch;
+      s.title = 'U+' + ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
+      grid.appendChild(s);
+    });
+    cs.appendChild(grid);
+  });
+
+  // copy
+  var copy = document.getElementById('copy-css');
+  copy.addEventListener('click', function () {
+    var text = document.getElementById('css-snippet').textContent;
+    var done = function () { copy.textContent = 'Copied'; setTimeout(function () { copy.textContent = 'Copy CSS'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, select);
+    } else { select(); }
+    function select() {
+      var r = document.createRange();
+      r.selectNodeContents(document.getElementById('css-snippet'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copy.textContent = 'Selected, press Ctrl/Cmd+C';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
